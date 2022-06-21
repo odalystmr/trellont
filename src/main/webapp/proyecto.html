@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proyectos</title>
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      div {
+        padding: 1%;
+      }
+    </style>
+    <!--JavaScript-->
+    <script type="module" src="JS/paginas/proyecto.js"></script>
+    <script type="module" src="JS/comun/cerrarSesion.js"></script>
+
+    <!--Bootstrap-->
+    <script type="module" src="JS/bootstrap/boostrap.min.js"></script>
+    <link rel="stylesheet" href="CSS/bootstrap/bootstrap.min.css" />
+  </head>
+  <body>
+    <div class="container-xxl">
+      <h1 id="titulo-proyecto" class="text-center"></h1>
+      <div class="input-group position-relative">
+        <form id="formCerrarSesion">
+          <button
+            type="submit"
+            class="btn btn-danger position-absolute top-0 end-0"
+          >
+            Cerrar sesión
+          </button>
+        </form>
+      </div>
+      <div class="row">
+        <div class="col-7">
+          <div class="card">
+            <h3 class="card-title">Crear columna</h3>
+            <div class="card-body">
+              <form id="form-crear-columna">
+                <div class="input-group">
+                  <span class="input-group-text">Título</span>
+                  <input
+                    required
+                    type="text"
+                    name="nombre"
+                    class="form-control"
+                    placeholder="Título de la columna"
+                    aria-label="Username"
+                    aria-describedby="basic-addon1"
+                  />
+                  <button type="submit" class="btn btn-primary">Crear</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-5">
+          <div class="card">
+            <h3 class="card-title">Invitar participantes</h3>
+            <div class="card-body">
+              <form id="form-invitar-participante">
+                <div class="input-group">
+                  <span class="input-group-text">Email</span>
+                  <input
+                    required
+                    type="email"
+                    name="email_participante"
+                    class="form-control"
+                    placeholder="Email del usuario"
+                  />
+                  <button type="submit" class="btn btn-primary">Invitar</button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" id="contenedor-columnas"></div>
+
+      <!-- MODAL BOOTSTRAP-->
+      <div class="modal" tabindex="-1" id="modal-crear-tarea">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <!--Formulario tarea-->
+            <form id="form-crear-tarea">
+              <div class="modal-header">
+                <h5 class="modal-title">Crear tarea</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                <div class="input-group">
+                  <span class="input-group-text w-25" id="basic-addon1"
+                    >Nombre</span
+                  >
+                  <input
+                    type="text"
+                    name="titulo"
+                    required
+                    max="25"
+                    class="form-control"
+                    placeholder="Nombre de la tarea"
+                    aria-label="Username"
+                    aria-describedby="basic-addon1"
+                  />
+                </div>
+                <br />
+                <div class="input-group">
+                  <span class="input-group-text w-25" id="basic-addon1"
+                    >Descripción</span
+                  >
+                  <input
+                    type="text"
+                    name="descripcion"
+                    required
+                    max="50"
+                    class="form-control"
+                    placeholder="Descripción de la tarea"
+                    aria-label="Username"
+                    aria-describedby="basic-addon1"
+                  />
+                </div>
+                <br />
+                <div class="input-group mb-3">
+                  <label
+                    class="input-group-text w-25"
+                    for="lista-select-responsable"
+                    >Responsable</label
+                  >
+                  <select
+                    required
+                    class="form-select"
+                    name="responsable_id"
+                    id="lista-select-responsable"
+                  ></select>
+                </div>
+                <input type="hidden" name="columna_id" id="input-columna-id" />
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cancelar
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  data-bs-dismiss="modal"
+                >
+                  Crear
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal" tabindex="-1" id="modal-detalle-tarea">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <!--Formulario tarea-->
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-tarea-titulo"></h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <p id="modal-tarea-description"></p>
+              <div class="modal-footer">
+                <p>Creado por: <span id="modal-tarea-creador"></span></p>
+                <p>Responsable: <span id="modal-tarea-responsable"></span></p>
+              </div>
+           		<div>
+                <form id="form-crear-comentario">
+                  <div class="input-group">
+                    <span class="input-group-text w-25"> Comentario </span>
+                    <input
+                      type="text"
+                      name="comentario"
+                      required
+                      max="50"
+                      class="form-control"
+                      placeholder="Muy buena tarea..."
+                    />
+                    <input type="hidden" name="tarea_id" id="input-crear-comentario-tarea-id"/>
+                  <button type="submit" class="btn btn-primary">Enviar</button>
+                  </div>
+                </form>
+               </div>
+               <div id="comentarios-container"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="input-group position-relative mt-5">
+        <a
+          href="./proyectos.html"
+          class="btn btn-danger position-absolute top-0 end-0 translate-middle"
+          style="width: 15%"
+        >
+          Volver atras
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
